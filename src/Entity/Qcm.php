@@ -24,15 +24,7 @@ class Qcm
 
     
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $resultatqcm;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $aaa = [];
+   
 
     public function getId(): ?int
     {

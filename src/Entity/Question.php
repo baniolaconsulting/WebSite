@@ -27,6 +27,11 @@ class Question
      */
     private $ennonce;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $corrige;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Question
     public function setEnnonce(string $ennonce): self
     {
         $this->ennonce = $ennonce;
+
+        return $this;
+    }
+
+    public function getCorrige(): ?string
+    {
+        return $this->corrige;
+    }
+
+    public function setCorrige(string $corrige): self
+    {
+        $this->corrige = $corrige;
 
         return $this;
     }

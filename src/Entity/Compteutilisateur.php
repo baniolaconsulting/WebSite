@@ -57,6 +57,11 @@ class Compteutilisateur
      */
     private $tel;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $typeutilisateur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Compteutilisateur
     public function setTel(int $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getTypeutilisateur(): ?string
+    {
+        return $this->typeutilisateur;
+    }
+
+    public function setTypeutilisateur(string $typeutilisateur): self
+    {
+        $this->typeutilisateur = $typeutilisateur;
 
         return $this;
     }
