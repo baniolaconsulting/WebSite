@@ -44,17 +44,7 @@ class Qcm
     }
 
    
-    public function getResultatqcm(): ?int
-    {
-        return $this->resultatqcm;
-    }
-
-    public function setResultatqcm(int $resultatqcm): self
-    {
-        $this->resultatqcm = $resultatqcm;
-
-        return $this;
-    }
+    
 
    
 }
