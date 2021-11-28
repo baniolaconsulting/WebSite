@@ -27,6 +27,11 @@ class Reponsecorrecte
      */
     private $contenureponse;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=question::class, inversedBy="reponsecorrectes")
+     */
+    private $matriculequestion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Reponsecorrecte
     public function setContenureponse(string $contenureponse): self
     {
         $this->contenureponse = $contenureponse;
+
+        return $this;
+    }
+
+    public function getMatriculequestion(): ?question
+    {
+        return $this->matriculequestion;
+    }
+
+    public function setMatriculequestion(?question $matriculequestion): self
+    {
+        $this->matriculequestion = $matriculequestion;
 
         return $this;
     }

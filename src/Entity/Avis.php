@@ -27,6 +27,16 @@ class Avis
      */
     private $contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Compteutilisateur::class, inversedBy="avis")
+     */
+    private $matriculeutilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="avis")
+     */
+    private $matriculemodele;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +62,30 @@ class Avis
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getMatriculeutilisateur(): ?compteutilisateur
+    {
+        return $this->matriculeutilisateur;
+    }
+
+    public function setMatriculeutilisateur(?compteutilisateur $matriculeutilisateur): self
+    {
+        $this->matriculeutilisateur = $matriculeutilisateur;
+
+        return $this;
+    }
+
+    public function getMatriculemodele(): ?modele
+    {
+        return $this->matriculemodele;
+    }
+
+    public function setMatriculemodele(?modele $matriculemodele): self
+    {
+        $this->matriculemodele = $matriculemodele;
 
         return $this;
     }

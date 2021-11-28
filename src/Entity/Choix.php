@@ -27,6 +27,11 @@ class Choix
      */
     private $contenu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=question::class, inversedBy="choixes")
+     */
+    private $matriculequestion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Choix
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getMatriculequestion(): ?question
+    {
+        return $this->matriculequestion;
+    }
+
+    public function setMatriculequestion(?question $matriculequestion): self
+    {
+        $this->matriculequestion = $matriculequestion;
 
         return $this;
     }

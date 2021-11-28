@@ -36,6 +36,16 @@ class Article
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Compteutilisateur::class, inversedBy="articles")
+     */
+    private $matriculeutilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Modele::class, inversedBy="articles")
+     */
+    private $matriculemodele;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +87,30 @@ class Article
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getMatriculeutilisateur(): ?Compteutilisateur
+    {
+        return $this->matriculeutilisateur;
+    }
+
+    public function setMatriculeutilisateur(?Compteutilisateur $matriculeutilisateur): self
+    {
+        $this->matriculeutilisateur = $matriculeutilisateur;
+
+        return $this;
+    }
+
+    public function getMatriculemodele(): ?modele
+    {
+        return $this->matriculemodele;
+    }
+
+    public function setMatriculemodele(?modele $matriculemodele): self
+    {
+        $this->matriculemodele = $matriculemodele;
 
         return $this;
     }

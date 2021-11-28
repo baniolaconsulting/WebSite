@@ -27,6 +27,11 @@ class Question
      */
     private $ennonce;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=qcm::class, inversedBy="questions")
+     */
+    private $matriculeqcm;
+
     
 
     public function getId(): ?int
@@ -54,6 +59,18 @@ class Question
     public function setEnnonce(string $ennonce): self
     {
         $this->ennonce = $ennonce;
+
+        return $this;
+    }
+
+    public function getMatriculeqcm(): ?qcm
+    {
+        return $this->matriculeqcm;
+    }
+
+    public function setMatriculeqcm(?qcm $matriculeqcm): self
+    {
+        $this->matriculeqcm = $matriculeqcm;
 
         return $this;
     }
