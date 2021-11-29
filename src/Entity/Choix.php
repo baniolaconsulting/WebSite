@@ -28,7 +28,7 @@ class Choix
     private $contenu;
 
     /**
-     * @ORM\ManyToOne(targetEntity=question::class, inversedBy="choixes")
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="choixes")
      */
     private $matriculequestion;
 

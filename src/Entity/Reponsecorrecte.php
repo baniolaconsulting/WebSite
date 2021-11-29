@@ -28,7 +28,7 @@ class Reponsecorrecte
     private $contenureponse;
 
     /**
-     * @ORM\ManyToOne(targetEntity=question::class, inversedBy="reponsecorrectes")
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="reponsecorrectes")
      */
     private $matriculequestion;
 

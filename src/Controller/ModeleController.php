@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Modele;
+use App\Form\ArticleType;
 use App\Form\ModeleType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,7 @@ class ModeleController extends AbstractController
         $modele = new Modele;
         
         $form = $this->createForm(ModeleType::class,$modele);
+        
 
         return $this->render('modele/index.html.twig',array(
             'form'=>$form->createView()));

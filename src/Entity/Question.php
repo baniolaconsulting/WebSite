@@ -28,7 +28,7 @@ class Question
     private $ennonce;
 
     /**
-     * @ORM\ManyToOne(targetEntity=qcm::class, inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity=Qcm::class, inversedBy="questions")
      */
     private $matriculeqcm;
 
