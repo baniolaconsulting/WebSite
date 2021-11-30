@@ -20,17 +20,17 @@ class Marque
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 ,  nullable=false)
      */
     private $matriculemarque;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 ,nullable=false)
      */
     private $nommarque;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 , nullable=false)
      */
     private $groupeconstructeur;
 
