@@ -20,7 +20,6 @@ class MarqueController extends AbstractController
         ]);
     }
 
-    git remote set-url origin https://yourusername@github.com/user/repo.git
 
 
     #[Route('/addmarque', name : 'add.marque')]
