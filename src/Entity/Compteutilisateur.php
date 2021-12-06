@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\CompteutilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -41,8 +42,16 @@ class Compteutilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8" , minMessage="mot de passe minimum 8 caracteres") 
+     * @Assert\EqualTo(propertyPath="confirm_pwd")
      */
     private $pwd;
+
+    /**
+     * @Assert\EqualTo(propertyPath="pwd")
+     */
+
+    public $confirm_pwd;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -150,6 +159,8 @@ class Compteutilisateur
 
         return $this;
     }
+
+   
 
     public function getMail(): ?string
     {

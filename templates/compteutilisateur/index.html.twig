@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CompteutilisateurController!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-{{form(form)}}
+ <div class="col-xs-4">
+{{form_start(form)}}
+{{form_widget(form)}}
+<button type="submit" class="btn btn-success">Enregistrer</button>
+ </div>
 {% endblock %}

@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Compteutilisateur;
+use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormTypeInterface;
 
 class CompteutilisateurType extends AbstractType
 {
@@ -16,13 +19,12 @@ class CompteutilisateurType extends AbstractType
             ->add('nomcompte')
             ->add('prenomcompte')
             ->add('login')
-            ->add('pwd')
+            ->add('pwd', PasswordType::class)
+            ->add('confirm_pwd', PasswordType::class)
             ->add('mail')
             ->add('adresse')
             ->add('tel')
-            ->add('typeutilisateur')
-            ->add('matriculeqcm')
-        ;
+            ->add('typeutilisateur');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -25,45 +25,27 @@ class MarqueController extends AbstractController
     #[Route('/addmarque', name : 'add.marque')]
     public function formAddMarque(Request $request)
     {
+        
 
         $manager = $this->getDoctrine()->getManager();
         $marque = new Marque;
         $form = $this->createForm(MarqueType::class,$marque);
         
+        
         $form->handleRequest($request);
         
-        
 
-if ($form->isSubmitted()) {
+if ($form->isSubmitted() && $form->isValid()) {
 $marque = $form->getData();
 
 $manager->persist($marque);
 $manager->flush();
 }
 
-       
-       
-       
-       
-      //  $data = $form->getData();
-        //dd($form->getData());
-        
-
-        //$marque->setNommarque($data->nommarque);
-       // $marque->setMatriculemarque($request->request->matriculemarque);
-//
-       // dd($marque);
-      //  $marque->setGroupeconstructeur('volvo');
-
-      //  $article->setTitle($data['title']);
-       // $article->setContent($data['content']);
-       // $article->setAuthor($this->getUser());
-
-       // $manager->persist($marque);
-       // $manager->flush();
+    
 
         return $this->render('marque/index.html.twig',array(
-            'form'=>$form->createView()));
+            'form1'=>$form->createView()));
         
     }
 }

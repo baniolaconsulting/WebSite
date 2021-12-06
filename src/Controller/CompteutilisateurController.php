@@ -12,23 +12,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CompteutilisateurController extends AbstractController
 {
-    #[Route('/compteutilisateur', name: 'compteutilisateur')]
-    public function index(): Response
-    {
-        return $this->render('compteutilisateur/index.html.twig', [
-            'controller_name' => 'CompteutilisateurController',
-        ]);
-    }
+   
 
     #[Route('/addutilisateur', name : 'addutil')]
     public function formAddUtilisateur(Request $request): Response
     {
         $Compteutilisateur = new Compteutilisateur;
-        
+        $manager = $this->getDoctrine()->getManager();
         
        
 
         $form = $this->createForm(CompteutilisateurType::class,$Compteutilisateur);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid())
+        {
+           $Compteutilisateur = $form->getData();
+            $manager->persist($Compteutilisateur);
+            $manager->flush();
+
+        }
+       
 
         return $this->render('compteutilisateur/index.html.twig',array(
             'form'=>$form->createView()));

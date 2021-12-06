@@ -20,17 +20,17 @@ class Marque
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255 ,  nullable=false)
+     * @ORM\Column(type="string", length=50 ,  nullable=true)
      */
     private $matriculemarque;
 
     /**
-     * @ORM\Column(type="string", length=255 ,nullable=false)
+     * @ORM\Column(type="string", length=50 ,nullable=false)
      */
     private $nommarque;
 
     /**
-     * @ORM\Column(type="string", length=255 , nullable=false)
+     * @ORM\Column(type="string", length=50 , nullable=false)
      */
     private $groupeconstructeur;
 
@@ -113,5 +113,10 @@ class Marque
         }
 
         return $this;
+    }
+    public function __toString(): string
+
+    {
+        return '';
     }
 }

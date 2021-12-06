@@ -1,7 +1,25 @@
+
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MarqueController!{% endblock %}
+{% block title %}{% endblock %}
+
 
 {% block body %}
-{{form(form)}}
+
+
+
+{{form_start(form1)}}
+   
+   <div class="col-xs-4">
+    {{form_row(form1.matriculemarque,{'label':'Matricule : ','attr':{'placeholder':'donner matriculemarque...'}})}}
+
+    {{form_row(form1.nommarque,{'label':'Marque : ','attr':{'placeholder':'donner la marque...'}})}}
+
+    {{form_row(form1.groupeconstructeur,{'label':'Goupe : ','attr':{'placeholder':'donner groupe de la marque...'}})}}
+    
+    {{form_rest(form1)}}
+    </div>
+
+    {{form_end(form1)}}
 {% endblock %}
