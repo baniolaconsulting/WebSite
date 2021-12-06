@@ -2,16 +2,25 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use App\Repository\CompteutilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\EqualTo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CompteutilisateurRepository::class)
+ *  @UniqueEntity(
+ *     fields={"mail"},
+ *     message="L'adresse e-mail fournie ne doit pas être déjà existante."
+ * )
  */
-class Compteutilisateur
+
+
+class Compteutilisateur implements UserInterface
 {
     /**
      * @ORM\Id
@@ -42,7 +51,7 @@ class Compteutilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8" , minMessage="mot de passe minimum 8 caracteres") 
+     * @Assert\Length(min="8" ,minMessage="Le mot de passe doit être de 8 caractères au minimum." )
      * @Assert\EqualTo(propertyPath="confirm_pwd")
      */
     private $pwd;
@@ -50,6 +59,7 @@ class Compteutilisateur
     /**
      * @Assert\EqualTo(propertyPath="pwd")
      */
+
 
     public $confirm_pwd;
 
@@ -87,6 +97,32 @@ class Compteutilisateur
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="matriculeutilisateur")
      */
     private $articles;
+
+    public function getUsername()
+    {
+        return $this->login;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->pwd;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
 
     public function __construct()
     {
@@ -160,7 +196,7 @@ class Compteutilisateur
         return $this;
     }
 
-   
+
 
     public function getMail(): ?string
     {

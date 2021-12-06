@@ -10,16 +10,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
+
 class CompteutilisateurController extends AbstractController
 {
    
 
     #[Route('/addutilisateur', name : 'addutil')]
-    public function formAddUtilisateur(Request $request): Response
+    public function formAddUtilisateur(Request $request ,UserPasswordEncoderInterface $encoder): Response
     {
-        $Compteutilisateur = new Compteutilisateur;
+       
         $manager = $this->getDoctrine()->getManager();
         
+        $Compteutilisateur = new Compteutilisateur; 
        
 
         $form = $this->createForm(CompteutilisateurType::class,$Compteutilisateur);
@@ -28,6 +33,10 @@ class CompteutilisateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
            $Compteutilisateur = $form->getData();
+
+           $cript = $encoder->encodePassword($Compteutilisateur, $Compteutilisateur->getPwd());
+           $Compteutilisateur->setPwd($cript);
+           
             $manager->persist($Compteutilisateur);
             $manager->flush();
 

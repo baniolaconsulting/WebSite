@@ -19,7 +19,7 @@ class CompteutilisateurType extends AbstractType
             ->add('nomcompte')
             ->add('prenomcompte')
             ->add('login')
-            ->add('pwd', PasswordType::class)
+            ->add('pwd',PasswordType::class)
             ->add('confirm_pwd', PasswordType::class)
             ->add('mail')
             ->add('adresse')
