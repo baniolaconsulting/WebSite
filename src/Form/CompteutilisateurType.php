@@ -23,8 +23,8 @@ class CompteutilisateurType extends AbstractType
             ->add('confirm_pwd', PasswordType::class)
             ->add('mail')
             ->add('adresse')
-            ->add('tel')
-            ->add('typeutilisateur');
+            ->add('tel');
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

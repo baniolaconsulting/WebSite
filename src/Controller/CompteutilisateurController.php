@@ -39,12 +39,27 @@ class CompteutilisateurController extends AbstractController
            
             $manager->persist($Compteutilisateur);
             $manager->flush();
+            
+            return $this->redirectToRoute('security_login');
 
         }
        
 
         return $this->render('compteutilisateur/index.html.twig',array(
             'form'=>$form->createView()));
+        
+    }
+
+    #[Route('/login',name:'security_login')]
+    public function connexion()
+    {
+        return $this->render('security/login.html.twig');
+    }
+
+
+    #[Route('/logout', name: 'security_logout')]
+    public function deconnexion()
+    {
         
     }
 }

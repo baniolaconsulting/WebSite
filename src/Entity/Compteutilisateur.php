@@ -79,7 +79,7 @@ class Compteutilisateur implements UserInterface
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $typeutilisateur;
 
@@ -97,6 +97,11 @@ class Compteutilisateur implements UserInterface
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="matriculeutilisateur")
      */
     private $articles;
+
+    public function getUserIdentifier()
+    {
+        return $this->getId();
+    }
 
     public function getUsername()
     {
@@ -129,6 +134,7 @@ class Compteutilisateur implements UserInterface
         $this->matriculeqcm = new ArrayCollection();
         $this->avis = new ArrayCollection();
         $this->articles = new ArrayCollection();
+        $this->setTypeutilisateur("null");
     }
 
     public function getId(): ?int

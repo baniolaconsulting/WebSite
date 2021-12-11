@@ -27,8 +27,15 @@
     
     <div>
     <ul class="nav navbar-nav navbar-right">
+    {% if not app.user %}
       <li><a href={{path('addutil')}}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href={{path('security_login')}}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
+      {% else %}
+           
+      <li><a href={{path('security_logout')}}><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      {% endif %}}
+
     </ul>
         </div>
     </div>

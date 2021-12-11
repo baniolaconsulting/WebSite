@@ -3,7 +3,10 @@
 {% block title %}Baniola Consulting!{% endblock %}
 
 {% block body %}
-<marquee><img src="{{ asset('coming soon.jpg') }}" alt="Girl in a jacket" width="500" height="600"></marquee>
+{% if app.user %}
+<marquee><img src="{{ asset('coming soon.jpg') }}" alt="coming soon" width="500" height="600"></marquee>
+{% endif %}
+
 
 
 {% endblock %}
