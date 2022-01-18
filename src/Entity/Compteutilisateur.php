@@ -61,6 +61,7 @@ class Compteutilisateur implements UserInterface
      */
 
 
+     
     public $confirm_pwd;
 
     /**
@@ -93,10 +94,12 @@ class Compteutilisateur implements UserInterface
      */
     private $avis;
 
+    
+
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="matriculeutilisateur")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="users")
      */
-    private $articles;
+    private $annonces;
 
     public function getUserIdentifier()
     {
@@ -133,8 +136,10 @@ class Compteutilisateur implements UserInterface
     {
         $this->matriculeqcm = new ArrayCollection();
         $this->avis = new ArrayCollection();
-        $this->articles = new ArrayCollection();
+      
         $this->setTypeutilisateur("null");
+        $this->setMatriculeutilisateur("null");
+        $this->annonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -307,9 +312,9 @@ class Compteutilisateur implements UserInterface
     }
 
     /**
-     * @return Collection|Article[]
+     * @return Collection|Annonce[]
      */
-    public function getArticles(): Collection
+    public function getAnnonce(): Collection
     {
         return $this->articles;
     }
@@ -324,15 +329,40 @@ class Compteutilisateur implements UserInterface
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+
+    public function __toString()
     {
-        if ($this->articles->removeElement($article)) {
+        return "";
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
             // set the owning side to null (unless already changed)
-            if ($article->getMatriculeutilisateur() === $this) {
-                $article->setMatriculeutilisateur(null);
+            if ($annonce->getUsers() === $this) {
+                $annonce->setUsers(null);
             }
         }
 
         return $this;
     }
 }
+    

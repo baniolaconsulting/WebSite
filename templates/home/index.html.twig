@@ -1,12 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Baniola Consulting!{% endblock %}
+{% block title %}Annonce index
+{% endblock %}
 
 {% block body %}
-{% if app.user %}
-<marquee><img src="{{ asset('coming soon.jpg') }}" alt="coming soon" width="500" height="600"></marquee>
-{% endif %}
+	{% if app.user %}
 
 
 
+	
+		<h1>Annonce index</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Prix</th>
+					<th>Date</th>
+
+					<th>Contenu</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for Annonce in annonces %}
+					<tr>
+						<td>{{ Annonce.id }}</td>
+						<td>{{ Annonce.titre }}</td>
+
+						<td>{{ Annonce.prix }}</td>
+						<td>{{ Annonce.date ? Annonce.date|date('Y-m-d') : '' }}</td>
+
+						<td>{{ Annonce.contenu }}</td>
+						<td>
+							<a href="{{ path('annonce_show', {'id': Annonce.id}) }}">show</a>
+							<a href="{{ path('annonce_edit', {'id': Annonce.id}) }}">edit</a>
+						</td>
+					</tr>
+			
+
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('annonce_new') }}">Create new</a>
+
+		
+
+	{% endif %}
 {% endblock %}

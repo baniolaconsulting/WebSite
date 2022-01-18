@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+<!--
+    <h1>Annonce</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annonce.id }}</td>
+            </tr>
+            <tr>
+                <th>Matriculeannonce</th>
+                <td>{{ annonce.matriculeannonce }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ annonce.titre }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ annonce.prix }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ annonce.date ? annonce.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ annonce.contenu }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('annonce_index') }}">back to list</a>
+
+    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+
+    {{ include('annonce/_delete_form.html.twig') }}
+    -->
+
+    <div class="card" style="width: 18rem;">
+{% for image in annonce.images %}
+
+	<img src="{{ asset('/uploads/' ~ image.name) }}" class="card-img-top" alt="...">
+{% endfor %}
+
+	<div class="card-body">
+<h3 class="card-title">{{annonce.titre}}</h3>
+
+<p class="card-text">{{annonce.contenu}}.</p>
+
+	</div>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item"></li>
+<li class="list-group-item">{{annonce.Prix}} DT</li>
+
+<li class="list-group-item">created : {{ annonce.date ? annonce.date|date('Y-m-d') : '' }}</li>
+
+	</ul>
+	<div class="card-body">
+<a href="{{ path('annonce_edit', {'id': annonce.id}) }}" class="card-link">edit</a>
+
+	
+<a href="{{ path('annonce_index') }}" class="card-link">back to list</a>
+
+
+	</div>
+</div>
+{% endblock %}

@@ -26,6 +26,21 @@ class QcmController extends AbstractController
 
         $form = $this->createForm(QcmType::class, $qcm);
 
+        $manager = $this->getDoctrine()->getManager();
+       
+        
+        $form->handleRequest($request);
+        
+
+if ($form->isSubmitted() && $form->isValid()) {
+$qcm = $form->getData();
+
+$manager->persist($qcm);
+$manager->flush();
+}
+
+        
+
 
         return $this->render('qcm/index.html.twig', array(
             'form' => $form->createView()

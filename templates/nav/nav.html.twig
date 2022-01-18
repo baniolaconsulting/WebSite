@@ -32,7 +32,12 @@
       <li><a href={{path('security_login')}}><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       
       {% else %}
-           
+<li>
+	<a href={{path('annonce_new')}}><span class="bi bi-plus-circle-fill"></span>Add a car</a>
+
+
+</li>
+
       <li><a href={{path('security_logout')}}><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
       {% endif %}}
 

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Qcm;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,8 @@ class QcmType extends AbstractType
     {
         $builder
             ->add('matriculeqcm')
-            ->add('compteutilisateurs')
+            ->add('Ajouter',SubmitType::class)
+
             
 
         ;
