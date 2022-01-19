@@ -79,27 +79,8 @@ class Compteutilisateur implements UserInterface
      */
     private $tel;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $typeutilisateur;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Qcm::class, inversedBy="compteutilisateurs")
-     */
-    private $matriculeqcm;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="matriculeutilisateur")
-     */
-    private $avis;
-
     
 
-    /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="users")
-     */
-    private $annonces;
 
     public function getUserIdentifier()
     {
@@ -137,7 +118,7 @@ class Compteutilisateur implements UserInterface
         $this->matriculeqcm = new ArrayCollection();
         $this->avis = new ArrayCollection();
       
-        $this->setTypeutilisateur("null");
+        
         $this->setMatriculeutilisateur("null");
         $this->annonces = new ArrayCollection();
     }
@@ -245,72 +226,15 @@ class Compteutilisateur implements UserInterface
         return $this;
     }
 
-    public function getTypeutilisateur(): ?string
-    {
-        return $this->typeutilisateur;
-    }
+   
 
-    public function setTypeutilisateur(string $typeutilisateur): self
-    {
-        $this->typeutilisateur = $typeutilisateur;
+   
 
-        return $this;
-    }
+    
 
-    /**
-     * @return Collection|qcm[]
-     */
-    public function getMatriculeqcm(): Collection
-    {
-        return $this->matriculeqcm;
-    }
+  
 
-    public function addMatriculeqcm(qcm $matriculeqcm): self
-    {
-        if (!$this->matriculeqcm->contains($matriculeqcm)) {
-            $this->matriculeqcm[] = $matriculeqcm;
-        }
-
-        return $this;
-    }
-
-    public function removeMatriculeqcm(qcm $matriculeqcm): self
-    {
-        $this->matriculeqcm->removeElement($matriculeqcm);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Avis[]
-     */
-    public function getAvis(): Collection
-    {
-        return $this->avis;
-    }
-
-    public function addAvi(Avis $avi): self
-    {
-        if (!$this->avis->contains($avi)) {
-            $this->avis[] = $avi;
-            $avi->setMatriculeutilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAvi(Avis $avi): self
-    {
-        if ($this->avis->removeElement($avi)) {
-            // set the owning side to null (unless already changed)
-            if ($avi->getMatriculeutilisateur() === $this) {
-                $avi->setMatriculeutilisateur(null);
-            }
-        }
-
-        return $this;
-    }
-
+  
     /**
      * @return Collection|Annonce[]
      */
@@ -319,15 +243,6 @@ class Compteutilisateur implements UserInterface
         return $this->articles;
     }
 
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setMatriculeutilisateur($this);
-        }
-
-        return $this;
-    }
 
 
     public function __toString()

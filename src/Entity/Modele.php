@@ -34,10 +34,7 @@ class Modele
      */
     private $technicite;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="matriculemodele")
-     */
-    private $avis;
+   
 
     /**
      * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="modeles")
@@ -52,7 +49,7 @@ class Modele
 
     public function __construct()
     {
-        $this->avis = new ArrayCollection();
+      
        
         $this->annonces = new ArrayCollection();
     }
@@ -98,35 +95,8 @@ class Modele
         return $this;
     }
 
-    /**
-     * @return Collection|Avis[]
-     */
-    public function getAvis(): Collection
-    {
-        return $this->avis;
-    }
+   
 
-    public function addAvi(Avis $avi): self
-    {
-        if (!$this->avis->contains($avi)) {
-            $this->avis[] = $avi;
-            $avi->setMatriculemodele($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAvi(Avis $avi): self
-    {
-        if ($this->avis->removeElement($avi)) {
-            // set the owning side to null (unless already changed)
-            if ($avi->getMatriculemodele() === $this) {
-                $avi->setMatriculemodele(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getMatriculemarque(): ?marque
     {
