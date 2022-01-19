@@ -140,35 +140,7 @@ class Modele
         return $this;
     }
 
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setMatriculemodele($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getMatriculemodele() === $this) {
-                $article->setMatriculemodele(null);
-            }
-        }
-
-        return $this;
-    }
+   
     public function __toString(): string
 
     {

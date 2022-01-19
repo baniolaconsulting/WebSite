@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modele{% endblock %}
+
+{% block body %}
+    <h1>Modele</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ modele.id }}</td>
+            </tr>
+            <tr>
+                <th>Matriculemodele</th>
+                <td>{{ modele.matriculemodele }}</td>
+            </tr>
+            <tr>
+                <th>Nommodele</th>
+                <td>{{ modele.nommodele }}</td>
+            </tr>
+            <tr>
+                <th>Technicite</th>
+                <td>{{ modele.technicite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('modele_index') }}">back to list</a>
+
+    <a href="{{ path('modele_edit', {'id': modele.id}) }}">edit</a>
+
+    {{ include('modele/_delete_form.html.twig') }}
+{% endblock %}
