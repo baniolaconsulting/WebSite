@@ -1,25 +1,39 @@
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
-
+{% block title %}Marque index{% endblock %}
 
 {% block body %}
+    <h1>Marque index</h1>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matriculemarque</th>
+                <th>Nommarque</th>
+                <th>Groupeconstructeur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marque in marques %}
+            <tr>
+                <td>{{ marque.id }}</td>
+                <td>{{ marque.matriculemarque }}</td>
+                <td>{{ marque.nommarque }}</td>
+                <td>{{ marque.groupeconstructeur }}</td>
+                <td>
+                    <a href="{{ path('marque_show', {'id': marque.id}) }}">show</a>
+                    <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-
-{{form_start(form1)}}
-   
-   <div class="col-xs-4">
-    {{form_row(form1.matriculemarque,{'label':'Matricule : ','attr':{'placeholder':'donner matriculemarque...'}})}}
-
-    {{form_row(form1.nommarque,{'label':'Marque : ','attr':{'placeholder':'donner la marque...'}})}}
-
-    {{form_row(form1.groupeconstructeur,{'label':'Goupe : ','attr':{'placeholder':'donner groupe de la marque...'}})}}
-    
-    {{form_rest(form1)}}
-    </div>
-
-    {{form_end(form1)}}
+    <a href="{{ path('marque_new') }}">Create new</a>
 {% endblock %}

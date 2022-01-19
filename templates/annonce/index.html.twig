@@ -8,8 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Matriculeannonce</th>
+               
                 <th>Titre</th>
                 <th>Prix</th>
                 <th>Date</th>
@@ -20,8 +19,8 @@
         <tbody>
         {% for annonce in annonces %}
             <tr>
-                <td>{{ annonce.id }}</td>
-                <td>{{ annonce.matriculeannonce }}</td>
+                
+                
                 <td>{{ annonce.titre }}</td>
                 <td>{{ annonce.prix }}</td>
                 <td>{{ annonce.date ? annonce.date|date('Y-m-d') : '' }}</td>
